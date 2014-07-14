@@ -1,0 +1,164 @@
+@charset "utf-8";
+/*
+Theme Name: Cuprum App for Día del niño
+Theme URL: http://www.cuprum.cl/
+Description: Tema para campaña día del niño Cuprum
+Version: 1.0
+Author: Upmedia
+Author URL: http://upmedia.cl
+*/
+
+
+*{
+	padding: 0px;
+	margin: 0px;
+}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+ 
+.clearfix {
+	display: inline-block;
+}
+ 
+html[xmlns] .clearfix {
+	display: block;
+}
+ 
+* html .clearfix {
+	height: 1%;
+}
+
+
+.left, .izq{float: left;}
+.right, .der{float:right;}
+.clear{ clear:both}
+
+
+h1, h2, h3, h4, h5 , h6{ font-family: 'glober', helvetica, arial , sans-serif; letter-spacing:-1px;}
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a{ color: #333; text-decoration:none; }
+h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover{ color: #A9272D; text-decoration:none; }
+
+h1{ font-size:38px;}
+h2{ font-size:26px;}
+h3{ font-size:20px;}
+h4{ font-size:16px;}
+h5{ font-size:12px;}
+h6{ letter-spacing:0px; font-weight:400}
+
+.column-1-2 { width: 48% }
+.column-1-3 { width: 300px }
+.column-2-3 { width: 630px }
+.column-1-4 { width: 22% }
+.column-2-4 { width: 44% }
+.column-3-4 { width: 74% }
+.column-1-5 { width: 182px }
+.column-2-5 { width: 375px }
+.column-3-5 { width: 570px }
+.column-4-5 { width: 765px }
+.column-1-6 { width: 155px }
+.column-5-6 { width: 82.67% }
+.column {	position: relative; margin: 0 30px 0 0; float: left;}
+.column.column-1-5 , .column.column-2-5 , .column.column-3-5 , .column.column-4-5 {	position: relative; margin: 0 15px 0 0; float: left;}
+.column.column-1-6 {margin: 0 8px 0 0;}
+.column.column-2-3{margin-right:40px;}
+.column-last { margin-right: 0 !important; clear: right;}
+
+.alignleft { display: inline;	float: left; margin-right: 15px; }
+.alignright { display: inline; float: right; margin-left: 15px;}
+.aligncenter {	clear: both; display: block; margin-left: auto;	margin-right: auto; }
+
+body{ background-image:url(images/background.png);}
+
+strong , b{ font-weight:700}
+em , i{font-style:italic;}
+small{font-size:10px;}
+
+p {  }
+.separator{padding:15px 0;}
+.divider{ border-top:1px solid #A9272D}
+.border { border-bottom: 1px solid #ccc; padding: 5px 0 0 0; margin-bottom: 5px;}
+
+
+/*******************************************************************************************/
+/*************************************HEADER************************************************/
+/*******************************************************************************************/
+
+
+
+
+/*******************************************************************************************/
+/*************************************HOME**************************************************/
+/*******************************************************************************************/
+
+
+
+/*******************************************************************************************/
+/*************************************PAGE**************************************************/
+/*******************************************************************************************/
+
+
+/*******************************************************************************************/
+/*************************************PAGINATION********************************************/
+/*******************************************************************************************/
+.navigation{ text-align:center}
+.wp-paginate {padding:0; margin:0;}
+.wp-paginate li {display:inline; list-style:none; font-size:14px;}
+.wp-paginate a {background:#ddd; border:1px solid #ccc; color:#666; margin-right:4px; padding:3px 6px; text-align:center; text-decoration:none;}
+.wp-paginate a:hover, .wp-paginate a:active {background:#ccc; color:#888;}
+.wp-paginate .title {color:#555; margin-right:4px; font-size:10px; font-family:roboto slab, georgia, serif;}
+.wp-paginate .gap {color:#999; margin-right:4px;}
+.wp-paginate .current {color:#fff; background: #A9272D; border:1px solid #525252; margin-right:4px; padding:3px 6px;}
+.wp-paginate .page {}
+.wp-paginate .prev, .wp-paginate .next {}
+
+/* style overrides for comments pagination */
+.wp-paginate-comments {}
+.wp-paginate-comments li {}
+.wp-paginate-comments a {}
+.wp-paginate-comments a:hover, .wp-paginate-comments a:active {}
+.wp-paginate-comments .title {}
+.wp-paginate-comments .gap {}
+.wp-paginate-comments .current {}
+.wp-paginate-comments .page {}
+.wp-paginate-comments .prev, .wp-paginate-comments .next {}
+
+#mobile .wp-paginate .title, #mobile .wp-paginate .gap {display: none;}
+
+
+
+/*******************************************************************************************/
+/*************************************SINGLE************************************************/
+/*******************************************************************************************/
+
+
+.fontSize{ float: right; margin:0px}
+.fontSize li{list-style: none;float: left;display: inline-block;padding: 5px;border: 1px solid #ccc ; line-height: 12px;vertical-align: middle;margin: 0 2px;font-weight: 300;width: 25px;text-align: center;height: 25px;top: 0px;}
+.fontSizeSmall{ font-size:13px;}
+.fontSizeMedium{ font-size:15px;}
+.fontSizeLarge{ font-size:17px;}
+.fontSize li a {color: #333;top: 0px;font-size: 13px;}
+
+
+/******************************************FOOTER*******************************/
+
+#footer{background-color:#fff;}
+#footer h1{ color:#6ca33f ; font-size:32px; font-weight:700} 	
+.info{ font-size:12px; color:#6ca33f ;  font-family:source sans pro , helvetica, arial, sans-serif; line-height:150%; padding-top:10px;}
+
+
+
+/*******************************************************************************************/
+/*************************************MOBILE************************************************/
+/*******************************************************************************************/
+
+
+/*******************************************************************************************/
+/*************************************TABLET************************************************/
+/*******************************************************************************************/
