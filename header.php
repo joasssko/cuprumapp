@@ -26,6 +26,8 @@
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
 <!-- Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Handlee' rel='stylesheet' type='text/css'>
 
 <!--Otros -->
 <?php wp_head()?>
@@ -33,6 +35,7 @@
 <!-- scripts -->
 <?php call_scripts()?>
 <script type="text/javascript" src="<?php bloginfo('template_directory')?>/bootstrap/bootstrap.min.js?ver=3.8.1"></script>
+<script type="text/javascript" src="<?php bloginfo('template_directory')?>/js/stopwatch.js"></script>
 
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -47,4 +50,3 @@
 </head>
 
 <body <?php body_class();?>>
-

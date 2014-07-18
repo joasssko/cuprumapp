@@ -56,10 +56,27 @@ function personajes_register() {
     flush_rewrite_rules();
 }
 
-register_taxonomy("edades", array('personajes'), array("hierarchical" => true, "label" => "Edades", "singular_label" => "Edad", "rewrite" => true));
+add_action('init', 'preguntas_register');
+function preguntas_register() {
+    $args = array(
+        'label' => 'Preguntas',
+        'singular_label' => 'Pregunta',
+        'public' => true,
+		'menu_position' => 5, 
+        '_builtin' => false,
+        'capability_type' => 'post',
+		'has_archive' => false,
+        'hierarchical' => false,
+        'rewrite' => array( 'slug' => 'preguntas'),
+        'supports' => array('title', 'excerpt' , 'thumbnail' )
+    );
+    register_post_type('preguntas', $args);
+    flush_rewrite_rules();
+}
 
-
+register_taxonomy("edades", array('preguntas'), array("hierarchical" => true, "label" => "Edades", "singular_label" => "Edad", "rewrite" => true));
 ?>
+
 <?php //register sidebars
 
 /* register_sidebar(array(
