@@ -1,3 +1,4 @@
+<?php if(!is_page()){?>
 <div id="footer" class="navbar-fixed-bottom">
 	<div class="container">
 		<div class="row">
@@ -11,6 +12,7 @@
 		</div>
 	</div>
 </div>
+<?php }?>
 
 </body>
 <?php wp_footer()?>

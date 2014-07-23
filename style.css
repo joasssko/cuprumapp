@@ -165,6 +165,7 @@ p { font-family: 'noteworthy', helvetica, arial , sans-serif;  color:#fff; font-
 }
 
 .npregunta{background: url(images/npregunta.png); background-position:center 0px; background-repeat:no-repeat; height:90px; width:115px; margin:35px auto }
+#mobile .npregunta{background: url(images/npreguntamobile.png); background-position:center 0px; background-repeat:no-repeat; height:50px; width:60px; margin:10px auto }
 
 #edad {padding: 25px 90px;height: 105px;background-image: url(images/input_edad.png);background-position: top center;border: none;background-color: rgba(0,0,0,0);background-repeat: no-repeat;width: 350px;  font-family: 'noteworthy', helvetica, arial , sans-serif; color:#fff; font-size:18px; line-height:120%; text-align:center;}
 
@@ -173,6 +174,7 @@ p { font-family: 'noteworthy', helvetica, arial , sans-serif;  color:#fff; font-
 .escena2 ::-moz-placeholder {color:#6ca33f;font-family: 'noteworthy', helvetica, arial , sans-serif; color:#fff; font-size:18px; line-height:160%; text-align:center;}
 .escena2 :-ms-input-placeholder {color:#6ca33f;font-family: 'noteworthy', helvetica, arial , sans-serif; color:#fff; font-size:18px; line-height:160%; text-align:center;}
 
+.escena4 div {font-size: 50px;}
 
 .reloj{ background: url(images/reloj.png); height:168px; width:140px; margin: 0 auto }
 #reloj {padding: 85px 0;font-size: 22px;font-weight: 700;font-family: helvetica, arial, sans-serif;color: #fff;}
@@ -183,13 +185,36 @@ p { font-family: 'noteworthy', helvetica, arial , sans-serif;  color:#fff; font-
 .exito, .error{ display:none}
 .etareo1, .etareo2, .etareo3{ display:none}
 
-.respuesta {padding: 10px 20px;color: #fff;font-family: lobster, helvetica, arial, sans-serif;font-size: 22px;margin: 4px 0;cursor: pointer;text-align: left;
-	
-}
+.respuesta {padding: 10px 20px;color: #fff;font-family: lobster, helvetica, arial, sans-serif;font-size: 22px;margin: 4px 0;cursor: pointer;text-align: left;	}
 
-.sombrea{text-shadow: 2px 2px 1px #fff , -2px -2px 1px #fff , 2px -2px 1px #fff , -2px 2px 1px #fff ;color:#ffa409}
+#mobile .respuesta {padding: 8px 20px;color: #fff;font-family: lobster, helvetica, arial, sans-serif;font-size: 22px;margin: 0;cursor: pointer;text-align: left;	}
+
+.sombrea {text-shadow: 2px 2px 1px #fff , -2px -2px 1px #fff , 2px -2px 1px #fff , -2px 2px 1px #fff ;color:#ffa409}
+
+#mobile .sombrea {text-shadow: 2px 2px 0px #fff , -2px -2px 0px #fff , 2px -2px 0px #fff , -2px 2px 0px #fff ;color:#ffa409; background-color:rgba(0,0,0,0.7)}
+
+.sombrea.correcta{ background-image:url(images/true.png); background-position: right 50%;  background-repeat: no-repeat}
+
+.sombrea.incorrecta{ background-image:url(images/false.png); background-position: right 50%; background-repeat: no-repeat}
+
+.lobster{ margin-top:100px; margin-bottom:50px;}
 
 .markers{ text-align:center; margin:10px 0}
+
+#mobile .markers{ background-color:#31547f; margin:0px; border-bottom:3px solid #fff;}
+#mobile .reloj {
+background-image: none;
+height: 20px;
+padding: 20px;
+}
+
+#mobile #reloj {
+padding: 0px 0;}
+
+.volviste{ display:none}
+
+
+
 
 /*******************************************************************************************/
 /*************************************PAGE**************************************************/

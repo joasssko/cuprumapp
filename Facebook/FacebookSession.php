@@ -23,9 +23,6 @@
  */
 namespace Facebook;
 
-use Facebook\Entities\AccessToken;
-use Facebook\Entities\SignedRequest;
-
 /**
  * Class FacebookSession
  * @package Facebook
@@ -46,19 +43,9 @@ class FacebookSession
   private static $defaultAppSecret;
 
   /**
-   * @var AccessToken The AccessToken entity for this connection.
+   * @var string The token string for the session
    */
-  private $accessToken;
-
-  /**
-   * @var SignedRequest
-   */
-  private $signedRequest;
-
-  /**
-   * @var bool
-   */
-  private static $useAppSecretProof = true;
+  private $token;
 
   /**
    * When creating a Session from an access_token, use:
@@ -66,78 +53,23 @@ class FacebookSession
    * This will validate the token and provide a Session object ready for use.
    * It will throw a SessionException in case of error.
    *
-   * @param AccessToken|string $accessToken
-   * @param SignedRequest $signedRequest The SignedRequest entity
+   * @param string $accessToken
    */
-  public function __construct($accessToken, SignedRequest $signedRequest = null)
+  public function __construct($accessToken)
   {
-    $this->accessToken = $accessToken instanceof AccessToken ? $accessToken : new AccessToken($accessToken);
-    $this->signedRequest = $signedRequest;
+    $this->token = $accessToken;
   }
 
   /**
-   * Returns the access token.
+   * Returns the access token
    *
    * @return string
    */
   public function getToken()
   {
-    return (string) $this->accessToken;
+    return $this->token;
   }
 
-  /**
-   * Returns the access token entity.
-   *
-   * @return AccessToken
-   */
-  public function getAccessToken()
-  {
-    return $this->accessToken;
-  }
-
-  /**
-   * Returns the SignedRequest entity.
-   *
-   * @return SignedRequest
-   */
-  public function getSignedRequest()
-  {
-    return $this->signedRequest;
-  }
-
-  /**
-   * Returns the signed request payload.
-   *
-   * @return null|array
-   */
-  public function getSignedRequestData()
-  {
-    return $this->signedRequest ? $this->signedRequest->getPayload() : null;
-  }
-
-  /**
-   * Returns a property from the signed request data if available.
-   *
-   * @param string $key
-   *
-   * @return null|mixed
-   */
-  public function getSignedRequestProperty($key)
-  {
-    return $this->signedRequest ? $this->signedRequest->get($key) : null;
-  }
-
-  /**
-   * Returns user_id from signed request data if available.
-   *
-   * @return null|string
-   */
-  public function getUserId()
-  {
-    return $this->signedRequest ? $this->signedRequest->getUserId() : null;
-  }
-
-  // @TODO Remove getSessionInfo() in 4.1: can be accessed from AccessToken directly
   /**
    * getSessionInfo - Makes a request to /debug_token with the appropriate
    *   arguments to get debug information about the sessions token.
@@ -149,10 +81,18 @@ class FacebookSession
    */
   public function getSessionInfo($appId = null, $appSecret = null)
   {
-    return $this->accessToken->getInfo($appId, $appSecret);
+    $targetAppId = static::_getTargetAppId($appId);
+    $targetAppSecret = static::_getTargetAppSecret($appSecret);
+    return (new FacebookRequest(
+      static::newAppSession($targetAppId, $targetAppSecret),
+      'GET',
+      '/debug_token',
+      array(
+        'input_token' => $this->getToken(),
+      )
+    ))->execute()->getGraphObject(GraphSessionInfo::className());
   }
 
-  // @TODO Remove getLongLivedSession() in 4.1: can be accessed from AccessToken directly
   /**
    * getLongLivedSession - Returns a new Facebook session resulting from
    *   extending a short-lived access token.  If this session is not
@@ -165,11 +105,29 @@ class FacebookSession
    */
   public function getLongLivedSession($appId = null, $appSecret = null)
   {
-    $longLivedAccessToken = $this->accessToken->extend($appId, $appSecret);
-    return new static($longLivedAccessToken);
+    $targetAppId = static::_getTargetAppId($appId);
+    $targetAppSecret = static::_getTargetAppSecret($appSecret);
+    $params = array(
+      'client_id' => $targetAppId,
+      'client_secret' => $targetAppSecret,
+      'grant_type' => 'fb_exchange_token',
+      'fb_exchange_token' => $this->getToken()
+    );
+    // The response for this endpoint is not JSON, so it must be handled
+    //   differently, not as a GraphObject.
+    $response = (new FacebookRequest(
+      self::newAppSession($targetAppId, $targetAppSecret),
+      'GET',
+      '/oauth/access_token',
+      $params
+    ))->execute()->getResponse();
+    if ($response) {
+      return new FacebookSession($response['access_token']);
+    } else {
+      return $this;
+    }
   }
 
-  // @TODO Remove getExchangeToken() in 4.1: can be accessed from AccessToken directly
   /**
    * getExchangeToken - Returns an exchange token string which can be sent
    *   back to clients and exchanged for a device-linked access token.
@@ -181,35 +139,41 @@ class FacebookSession
    */
   public function getExchangeToken($appId = null, $appSecret = null)
   {
-    return AccessToken::getCodeFromAccessToken($this->accessToken, $appId, $appSecret);
+    $targetAppId = static::_getTargetAppId($appId);
+    $targetAppSecret = static::_getTargetAppSecret($appSecret);
+    // Redirect URI is being removed as a requirement.  Passing an empty string.
+    $params = array(
+      'client_id' => $targetAppId,
+      'access_token' => $this->getToken(),
+      'client_secret' => $targetAppSecret,
+      'redirect_uri' => ''
+    );
+    $response = (new FacebookRequest(
+      self::newAppSession($targetAppId, $targetAppSecret),
+      'GET',
+      '/oauth/client_code',
+      $params
+    ))->execute()->getGraphObject();
+    return $response->getProperty('code');
   }
 
-  // @TODO Remove validate() in 4.1: can be accessed from AccessToken directly
   /**
    * validate - Ensures the current session is valid, throwing an exception if
    *   not.  Fetches token info from Facebook.
    *
    * @param string|null $appId Application ID to use
    * @param string|null $appSecret App secret value to use
-   * @param string|null $machineId
    *
    * @return boolean
-   *
-   * @throws FacebookSDKException
    */
-  public function validate($appId = null, $appSecret = null, $machineId = null)
+  public function validate($appId = null, $appSecret = null)
   {
-    if ($this->accessToken->isValid($appId, $appSecret, $machineId)) {
-      return true;
-    }
-
-    // @TODO For v4.1 this should not throw an exception, but just return false.
-    throw new FacebookSDKException(
-      'Session has expired, or is not valid for this app.', 601
-    );
+    $targetAppId = static::_getTargetAppId($appId);
+    $targetAppSecret = static::_getTargetAppSecret($appSecret);
+    $info = $this->getSessionInfo($targetAppId, $targetAppSecret);
+    return self::validateSessionInfo($info, $targetAppId, $targetAppSecret);
   }
 
-  // @TODO Remove validateSessionInfo() in 4.1: can be accessed from AccessToken directly
   /**
    * validateTokenInfo - Ensures the provided GraphSessionInfo object is valid,
    *   throwing an exception if not.  Ensures the appId matches,
@@ -217,59 +181,135 @@ class FacebookSession
    *
    * @param GraphSessionInfo $tokenInfo
    * @param string|null $appId Application ID to use
-   * @param string|null $machineId
    *
    * @return boolean
    *
    * @throws FacebookSDKException
    */
   public static function validateSessionInfo(GraphSessionInfo $tokenInfo,
-                                           $appId = null,
-                                           $machineId = null)
+                                           $appId = null)
   {
-    if (AccessToken::validateAccessToken($tokenInfo, $appId, $machineId)) {
-      return true;
+    $targetAppId = static::_getTargetAppId($appId);
+    if ($tokenInfo->getAppId() !== $targetAppId
+      || !$tokenInfo->isValid() || $tokenInfo->getExpiresAt() === null
+      || $tokenInfo->getExpiresAt()->getTimestamp() < time()) {
+      throw new FacebookSDKException(
+        'Session has expired, or is not valid for this app.'
+      );
     }
-
-    // @TODO For v4.1 this should not throw an exception, but just return false.
-    throw new FacebookSDKException(
-      'Session has expired, or is not valid for this app.', 601
-    );
+    return true;
   }
 
   /**
    * newSessionFromSignedRequest - Returns a FacebookSession for a
    *   given signed request.
    *
-   * @param SignedRequest $signedRequest
+   * @param string $signedRequest
+   * @param string $state
    *
    * @return FacebookSession
    */
-  public static function newSessionFromSignedRequest(SignedRequest $signedRequest)
+  public static function newSessionFromSignedRequest($signedRequest,
+                                                     $state = null)
   {
-    if ($signedRequest->get('code')
-      && !$signedRequest->get('oauth_token')) {
-      return self::newSessionAfterValidation($signedRequest);
+    $parsedRequest = self::parseSignedRequest($signedRequest, $state);
+    if (isset($parsedRequest['code'])) {
+      return self::newSessionAfterValidation($parsedRequest);
     }
-    $accessToken = $signedRequest->get('oauth_token');
-    $expiresAt = $signedRequest->get('expires', 0);
-    $accessToken = new AccessToken($accessToken, $expiresAt);
-    return new static($accessToken, $signedRequest);
+    return new FacebookSession($parsedRequest['oauth_token']);
   }
 
   /**
    * newSessionAfterValidation - Returns a FacebookSession for a
    *   validated & parsed signed request.
    *
-   * @param SignedRequest $signedRequest
+   * @param array $parsedSignedRequest
    *
    * @return FacebookSession
+   *
+   * @throws FacebookRequestException
    */
-  protected static function newSessionAfterValidation(SignedRequest $signedRequest)
+  private static function newSessionAfterValidation($parsedSignedRequest)
   {
-    $code = $signedRequest->get('code');
-    $accessToken = AccessToken::getAccessTokenFromCode($code);
-    return new static($accessToken, $signedRequest);
+    $params = array(
+      'client_id' => self::$defaultAppId,
+      'redirect_uri' => '',
+      'client_secret' =>
+        self::$defaultAppSecret,
+      'code' => $parsedSignedRequest['code']
+    );
+    $response = (new FacebookRequest(
+      self::newAppSession(
+        self::$defaultAppId, self::$defaultAppSecret),
+      'GET',
+      '/oauth/access_token',
+      $params
+    ))->execute()->getResponse();
+    if (isset($response['access_token'])) {
+      return new FacebookSession($response['access_token']);
+    }
+    throw FacebookRequestException::create(
+      json_encode($parsedSignedRequest),
+      $parsedSignedRequest,
+      401
+    );
+  }
+
+  /**
+   * Parses a signed request.
+   *
+   * @param string $signedRequest
+   * @param string $state
+   *
+   * @return array
+   *
+   * @throws FacebookSDKException
+   */
+  private static function parseSignedRequest($signedRequest, $state)
+  {
+    if (strpos($signedRequest, '.') !== false) {
+      list($encodedSig, $encodedData) = explode('.', $signedRequest, 2);
+      $sig = self::_base64UrlDecode($encodedSig);
+      $data = json_decode(self::_base64UrlDecode($encodedData), true);
+      if (isset($data['algorithm']) && $data['algorithm'] === 'HMAC-SHA256') {
+        $expectedSig = hash_hmac(
+          'sha256', $encodedData, static::$defaultAppSecret, true
+        );
+        if (strlen($sig) !== strlen($expectedSig)) {
+          throw new FacebookSDKException(
+            'Invalid signature on signed request.'
+          );
+        }
+        $validate = 0;
+        for ($i = 0; $i < strlen($sig); $i++) {
+          $validate |= ord($expectedSig[$i]) ^ ord($sig[$i]);
+        }
+        if ($validate !== 0) {
+          throw new FacebookSDKException(
+            'Invalid signature on signed request.'
+          );
+        }
+        if (!isset($data['oauth_token']) && !isset($data['code'])) {
+          throw new FacebookSDKException(
+            'Invalid signed request, missing OAuth data.'
+          );
+        }
+        if ($state && (!isset($data['state']) || $data['state'] != $state)) {
+          throw new FacebookSDKException(
+            'Signed request did not pass CSRF validation.'
+          );
+        }
+        return $data;
+      } else {
+        throw new FacebookSDKException(
+          'Invalid signed request, using wrong algorithm.'
+        );
+      }
+    } else {
+      throw new FacebookSDKException(
+        'Malformed signed request.'
+      );
+    }
   }
 
   /**
@@ -300,8 +340,8 @@ class FacebookSession
    */
   public static function setDefaultApplication($appId, $appSecret)
   {
-    self::$defaultAppId = $appId;
-    self::$defaultAppSecret = $appSecret;
+    static::$defaultAppId = $appId;
+    static::$defaultAppSecret = $appSecret;
   }
 
   /**
@@ -315,10 +355,10 @@ class FacebookSession
    * @throws FacebookSDKException
    */
   public static function _getTargetAppId($appId = null) {
-    $target = ($appId ?: self::$defaultAppId);
+    $target = ($appId ?: static::$defaultAppId);
     if (!$target) {
       throw new FacebookSDKException(
-        'You must provide or set a default application id.', 700
+        'You must provide or set a default application id.'
       );
     }
     return $target;
@@ -335,33 +375,27 @@ class FacebookSession
    * @throws FacebookSDKException
    */
   public static function _getTargetAppSecret($appSecret = null) {
-    $target = ($appSecret ?: self::$defaultAppSecret);
+    $target = ($appSecret ?: static::$defaultAppSecret);
     if (!$target) {
       throw new FacebookSDKException(
-        'You must provide or set a default application secret.', 701
+        'You must provide or set a default application secret.'
       );
     }
     return $target;
   }
 
   /**
-   * Enable or disable sending the appsecret_proof with requests.
+   * Base64 decoding which replaces characters:
+   *   + instead of -
+   *   / instead of _
+   * @link http://en.wikipedia.org/wiki/Base64#URL_applications
    *
-   * @param bool $on
-   */
-  public static function enableAppSecretProof($on = true)
-  {
-    static::$useAppSecretProof = ($on ? true : false);
-  }
-
-  /**
-   * Get whether or not appsecret_proof should be sent with requests.
+   * @param string $input base64 url encoded input
    *
-   * @return bool
+   * @return string The decoded string
    */
-  public static function useAppSecretProof()
-  {
-    return static::$useAppSecretProof;
+  public static function _base64UrlDecode($input) {
+    return base64_decode(strtr($input, '-_', '+/'));
   }
 
 }

@@ -6,14 +6,14 @@ jQuery(document).ready(function($) {
 		  })
 	})
 	
-	jQuery('.facebookmg').click(function(event) {
+	/*jQuery('.facebookmg').click(function(event) {
 		event.preventDefault();
 		jQuery('.escena1').fadeOut('fast', function() {
 			jQuery('.logoapp').animate({top: -150}, 500)
-			jQuery('.escena2').delay(100).fadeIn('fast')
+			//jQuery('.escena2').delay(100).fadeIn('fast')
 		});
 		
-	});
+	});*/
 	
 	
 	

@@ -1,5 +1,5 @@
 <?php get_header()?>
-<body <?php body_class();?> >
+<body <?php body_class();?>>
 <?php
 /*include 'mobiledetector.php';
 $detect = new Mobile_Detect;
@@ -13,19 +13,11 @@ if ($detect->isMobile() ){?>
 	<meta http-equiv="refresh" content="0; url=http://google.com/" />
 
 <?php }*/?>
-
-
-
-<div id="main" style="min-height:1000px;">
+<div id="main">
 	<div class="container">
 		<div class="row">
 			<div class="logo">
 				<img src="<?php bloginfo('template_directory')?>/images/logo.png" alt="" class="alignleft"/>
-				
-				<div class="der">
-					<div id="like"><fb:like href="<?php bloginfo('url')?>" send="false" width="100" size="xlarge" data-show-faces="false"></fb:like></div>
-					<div id="login"><fb:login-button autologoutlink="true" show-faces="false" perms="user_likes" size="xlarge" ></fb:login-button></div>
-				</div>
 				
 			</div>
 			
@@ -39,13 +31,17 @@ if ($detect->isMobile() ){?>
 			</div>
 			
 			<div class="escena1">
-				<div class="col-md-6 col-md-offset-3"><h2>Pon a prueba tu memoria con este entretenido desafío que CuprumAFP tiene para tí en el mes del niño.</h2></div>
+				<div class="col-md-6 col-md-offset-3"><h2>Haz me gusta y pon a prueba tu memoria con este entretenido desafío que CuprumAFP tiene para tí en el mes del niño.</h2></div>
 				<div class="clear"></div>
 							
 				
-				<a href="#" class="facebookmg"><img src="<?php bloginfo('template_directory')?>/images/siguiente.png" alt="" /></a>
-				
+				<a href="#" class="facebookmg"><img src="<?php bloginfo('template_directory')?>/images/mg.png" alt="" /></a>
+				<div class="clear"></div>
+				<img src="<?php bloginfo('template_directory')?>/images/mano.png" alt="" class="mano animated wobble" />
 			</div>
+			
+			
+			<div class="close" style="display:none">
 			
 			<div class="escena2 col-md-8 col-md-offset-2">
 				<h1>Instrucciones</h1>
@@ -54,7 +50,7 @@ if ($detect->isMobile() ){?>
 				</div>
 				<input name="edad" id="edad" placeholder="ej: 1984" type="text" />
 				
-				<div class="alerta col-md-6 col-md-offset-3"></div>
+				<div class="alerta"></div>
 				
 				<div class="jugar"><img src="<?php bloginfo('template_directory')?>/images/jugar.png" alt="" width="250" /></div>
 			</div>
@@ -333,15 +329,10 @@ if ($detect->isMobile() ){?>
 			<div class="clear"></div>
 			<div class="escena4 col-md-8 col-md-offset-2">
 				<div class="lobster"><img src="<?php bloginfo('template_directory')?>/images/feliz.png" alt="" /></div>
-				
-				<div class="sharebuton"><a href="http://facebook.com/sharer.php?app_id=1510090219206225&sdk=joey&u=http%3A%2F%2Fdiadelninocuprum.upmedia.cl%2F&display=popup"><img src="<?php bloginfo('template_directory')?>/images/compartir.png" alt=""></a></div>
-				
-				<!--<fb:share-button href="<?php bloginfo('url')?>" size="xlarge" data-show-faces="false" width="100"></fb:share-button> -->
-
-
-			
+				<div class="sharebuton"><a href="#"><img src="<?php bloginfo('template_directory')?>/images/compartir.png" alt="" /></a></div>
 			</div>
-				
+			
+			</div>	
 		</div>
 	</div>
 </div>

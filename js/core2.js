@@ -2,32 +2,28 @@ jQuery(document).ready(function($) {
 	
 	jQuery('.logoapp').animate({opacity: 1, top: 0}, 500, 'swing',  function() {
 		  jQuery('.mano').animate({opacity:1}, 500, function() {
-		    // stuff to do after animation is complete
 		  })
 	})
 	
 	jQuery('.facebookmg').click(function(event) {
 		event.preventDefault();
 		jQuery('.escena1').fadeOut('fast', function() {
-			jQuery('.logoapp').animate({top: -150}, 500)
+			jQuery('.logo').slideUp('fast')
+			//jQuery('.logoapp').animate({top: -150}, 500)
 			jQuery('.escena2').delay(100).fadeIn('fast')
 		});
 		
 	});
 	
-	
-	
-	
 	jQuery('.jugar').click(function(event) {
-		
-		
-		//jQuery('.escena2').fadeOut('fast', function() {
-			//jQuery('.escena3').fadeIn('fast')
+			
+			
 			
 			var edad = $('#edad').val();
 			
 			if(edad >= 1985 && edad <= 2012){
 				jQuery('.escena2').fadeOut('fast', function() {
+					jQuery('.logoapp').slideUp('fast')
 					jQuery('.escena3').fadeIn('fast')
 					jQuery('.etareo1').css('display', 'block')
 					jQuery('#reloj').stopwatch().stopwatch('start');										
@@ -36,6 +32,7 @@ jQuery(document).ready(function($) {
 			
 			else if(edad <= 1984 && edad >= 1975){
 				jQuery('.escena2').fadeOut('fast', function() {
+					jQuery('.logoapp').slideUp('fast')
 					jQuery('.escena3').fadeIn('fast')
 					jQuery('.etareo2').css('display', 'block')
 					jQuery('#reloj').stopwatch().stopwatch('start');										
@@ -44,6 +41,7 @@ jQuery(document).ready(function($) {
 			
 			else if(edad <= 1974 && edad >= 1920){
 				jQuery('.escena2').fadeOut('fast', function() {
+					jQuery('.logoapp').slideUp('fast')
 					jQuery('.escena3').fadeIn('fast')
 					jQuery('.etareo3').css('display', 'block')
 					jQuery('#reloj').stopwatch().stopwatch('start');										
