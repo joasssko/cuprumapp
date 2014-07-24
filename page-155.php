@@ -95,11 +95,8 @@ if (isset($session)) {
 <?php
         if (isset($_SESSION['valid']) && $_SESSION['valid'] == true) {
             
-            if (isset($_SESSION['FB']) && ($_SESSION['FB'] == true)) {
-                // echo FB user info
-               
-				get_template_part('_page-tab');
-
+            if (isset($_SESSION['FB']) && ($_SESSION['FB'] == true)) { 
+	
 				/* make the API call */
 				$request = new FacebookRequest(
 				  $session,
@@ -111,18 +108,20 @@ if (isset($session)) {
 				/* handle the result */
 				
 				var_dump($graphObject);
-				
+	
+	?>
+	
+               
 				
 
 
-            }
+            <?php }
         } else { ;
 
 	
 ?>
 
-<?php get_header()?>
-<body <?php body_class();?>>			
+<?php get_header()?>			
 <div class="container" sttle="text-align:center;">
 	<div class="row">
 		<h1>Lo sentímos<h1>

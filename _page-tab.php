@@ -1,18 +1,5 @@
 <?php get_header()?>
 <body <?php body_class();?>>
-<?php
-/*include 'mobiledetector.php';
-$detect = new Mobile_Detect;
-
-if ($detect->isMobile() ){?>
-	
-	
-
-<?php }else{?>
-
-	<meta http-equiv="refresh" content="0; url=http://google.com/" />
-
-<?php }*/?>
 <div id="main">
 	<div class="container">
 		<div class="row">
@@ -35,9 +22,9 @@ if ($detect->isMobile() ){?>
 				<div class="clear"></div>
 							
 				
-				<a href="#" class="facebookmg"><img src="<?php bloginfo('template_directory')?>/images/mg.png" alt="" /></a>
+				<!-- <a href="#" class="facebookmg"><img src="<?php bloginfo('template_directory')?>/images/mg.png" alt="" /></a>
 				<div class="clear"></div>
-				<img src="<?php bloginfo('template_directory')?>/images/mano.png" alt="" class="mano animated wobble" />
+				<img src="<?php bloginfo('template_directory')?>/images/mano.png" alt="" class="mano animated wobble" />-->
 			</div>
 			
 			
