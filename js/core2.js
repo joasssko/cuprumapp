@@ -136,6 +136,15 @@ jQuery(document).ready(function($) {
 			jQuery('.volviste').fadeIn('fast')
 			jQuery('.escena4').fadeIn('fast')
 			
+			jQuery('.markers').css({
+			  backgroundColor: 'transparent',
+			  borderBottom: 'none',
+			})
+			jQuery('.logoapp').fadeIn('slow')
+			jQuery('.reloj').parent('.col-xs-6').addClass('col-xs-12').removeClass('col-xs-6')
+			
+			
+			
 		});			
 	});
 	

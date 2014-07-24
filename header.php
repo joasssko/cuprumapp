@@ -3,13 +3,11 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
 <?php if(is_home()){?>
 	<title><?php wp_title();?></title>
 <?php }else{?>
 	<title><?php wp_title();?></title>
 <?php }?>
-
 <meta property="og:url" content="<?php bloginfo('url')?>" />
 <meta property="og:title" content="ADIVINA EL PERSONAJE" />
 <meta property="og:description" content="Vencí el desafío del mes del niño ADIVINA EL PERSONAJE. Te invito a jugar y recordar tu niñez junto a Cuprum AFP" />
@@ -51,5 +49,14 @@
 <?php call_scripts()?>
 <script type="text/javascript" src="<?php bloginfo('template_directory')?>/bootstrap/bootstrap.min.js?ver=3.8.1"></script>
 <script type="text/javascript" src="<?php bloginfo('template_directory')?>/js/stopwatch.js"></script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/es_ES/all.js#xfbml=1&appId=1510090219206225&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 </head>

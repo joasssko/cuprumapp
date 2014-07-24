@@ -1,34 +1,37 @@
 <?php get_header()?>
+<div id="fb-root"></div>
 <body <?php body_class();?>>
+
+<style type="text/css">
+	.container{ width:810px;}
+	.volviste{ padding:40px 0;}
+	.escena4{ padding:70px 0 }
+</style>
+
 <div id="main">
 	<div class="container">
 		<div class="row">
 			<div class="logo">
-				<img src="<?php bloginfo('template_directory')?>/images/logo.png" alt="" class="alignleft"/>
+				<img src="<?php bloginfo('template_directory')?>/images/logo.png" alt="" width="350" class="alignleft"/>
 				
 			</div>
 			
 			<div class="logoapp">
 				<div class="col-md-8 col-md-offset-2">
-					<a href="<?php bloginfo('url')?>" class="">
-						<img src="<?php bloginfo('template_directory')?>/images/logoapp.png" width="100%" alt="" />
-					</a>
+					<img src="<?php bloginfo('template_directory')?>/images/logoapp.png" width="70%" style="margin:0 auto" alt="" />
 				</div>
 				<div class="clear"></div>
 			</div>
 			
 			<div class="escena1">
-				<div class="col-md-6 col-md-offset-3"><h2>Haz me gusta y pon a prueba tu memoria con este entretenido desafío que CuprumAFP tiene para tí en el mes del niño.</h2></div>
+				<div class="col-md-6 col-md-offset-3"><h2>Pon a prueba tu memoria con este entretenido desafío que CuprumAFP tiene para tí en el mes del niño.</h2></div>
 				<div class="clear"></div>
 							
 				
-				<!-- <a href="#" class="facebookmg"><img src="<?php bloginfo('template_directory')?>/images/mg.png" alt="" /></a>
+				<div class="facebookmg"><img src="<?php bloginfo('template_directory')?>/images/siguiente.png" alt="" /></div>
 				<div class="clear"></div>
-				<img src="<?php bloginfo('template_directory')?>/images/mano.png" alt="" class="mano animated wobble" />-->
+				<img src="<?php bloginfo('template_directory')?>/images/mano.png" alt="" class="mano animated wobble" />
 			</div>
-			
-			
-			<div class="close" style="display:none">
 			
 			<div class="escena2 col-md-8 col-md-offset-2">
 				<h1>Instrucciones</h1>
@@ -46,14 +49,14 @@
 			<div class="escena3 col-md-8 col-md-offset-2">
 				
 				<div class="markers">
-					<div class="col-md-4 col-xs-6 nnpregunta"><div class="npregunta"></div></div>
+					<div class="col-md-4 col-xs-8 nnpregunta"><div class="npregunta"></div></div>
 					
-					<div class="col-md-8 col-xs-6 volviste">
+					<div class="col-md-8 col-xs-6 col-xs-offset-1 volviste">
 						<h1>¡Felicitaciones!</h1>
 						<p>Volviste a ser niño durante</p>
 					</div>
 					<div class="col-md-4 relleno"></div>
-					<div class="col-md-4 col-xs-6"><div class="reloj"><div id="reloj">00:00</div></div></div>
+					<div class="col-md-4 col-xs-3"><div class="reloj"><div id="reloj">00:00</div></div></div>
 					<div class="clear"></div>
 				</div>				
 				<div class="clear"></div>				
@@ -64,13 +67,13 @@
 					<?php foreach ($preguntas as $pregunta):?>
 					<?php $count++?>
 					<div class="pregunta-<?php echo $count?> pregunta">
-						<div class="col-md-6">
+						<div class="col-md-6 col-xs-6">
 						<?php echo get_the_post_thumbnail($pregunta->ID , 'medium')?>
 						</div>
 						<?php $personajes = get_field('personajes' , $pregunta->ID)?>
 						<?php $correcta = get_field('correcta' , $pregunta->ID)?>
 						
-						<div class="col-md-6">						
+						<div class="col-md-6 col-xs-6">						
 							<?php foreach($personajes as $personaje):?>
 								<div class="respuesta respuesta-<?php echo $personaje->ID?> <?php if($personaje->ID == $correcta[0]->ID){echo 'correcta'; }else{echo 'incorrecta';}?>"><span class="fa fa-circle"></span>&nbsp;<?php echo get_the_title($personaje->ID)?></div>
 							<?php endforeach;?>
@@ -149,12 +152,12 @@
 					<?php foreach ($preguntas as $pregunta):?>
 					<?php $count++?>
 					<div class="pregunta-<?php echo $count?> pregunta">
-						<div class="col-md-6">
+						<div class="col-md-6 col-xs-6">
 						<?php echo get_the_post_thumbnail($pregunta->ID , 'medium')?>
 						</div>
 						<?php $personajes = get_field('personajes' , $pregunta->ID)?>
 						<?php $correcta = get_field('correcta' , $pregunta->ID)?>	
-						<div class="col-md-6">					
+						<div class="col-md-6 col-xs-6">					
 						<?php foreach($personajes as $personaje):?>
 							<div class="respuesta respuesta-<?php echo $personaje->ID?> <?php if($personaje->ID == $correcta[0]->ID){echo 'correcta'; }else{echo 'incorrecta';}?>"><span class="fa fa-circle"></span>&nbsp;<?php echo get_the_title($personaje->ID)?></div>
 						<?php endforeach;?>
@@ -232,12 +235,12 @@
 					<?php foreach ($preguntas as $pregunta):?>
 					<?php $count++?>
 					<div class="pregunta-<?php echo $count?> pregunta">
-						<div class="col-md-6">
+						<div class="col-md-6 col-xs-6">
 						<?php echo get_the_post_thumbnail($pregunta->ID , 'medium')?>
 						</div>
 						<?php $personajes = get_field('personajes' , $pregunta->ID)?>
 						<?php $correcta = get_field('correcta' , $pregunta->ID)?>	
-						<div class="col-md-6">					
+						<div class="col-md-6 col-xs-6">					
 						<?php foreach($personajes as $personaje):?>
 							<div class="respuesta respuesta-<?php echo $personaje->ID?> <?php if($personaje->ID == $correcta[0]->ID){echo 'correcta'; }else{echo 'incorrecta';}?>"><span class="fa fa-circle"></span>&nbsp;<?php echo get_the_title($personaje->ID)?></div>
 						<?php endforeach;?>
@@ -312,12 +315,25 @@
 				<?php //fin rango etareo acá debiese existir el repetido con un "else"?>
 				
 				
-			</div>
+
 			<div class="clear"></div>
 			<div class="escena4 col-md-8 col-md-offset-2">
 				<div class="lobster"><img src="<?php bloginfo('template_directory')?>/images/feliz.png" alt="" /></div>
-				<div class="sharebuton"><a href="#"><img src="<?php bloginfo('template_directory')?>/images/compartir.png" alt="" /></a></div>
+				<div class="sharebuton"><a href="<?php echo get_page_link('157')?>"><img src="<?php bloginfo('template_directory')?>/images/siguiente.png" alt="" /></a></div>
 			</div>
+			
+			<script>
+				jQuery(document).ready(function($) {
+					jQuery('.sharebuton').click(function(event) {
+						event.preventDefault();
+						var tiempo	=	jQuery('#reloj').html();
+						jQuery.cookie('tiempo' , tiempo , { 'path' : '/' });
+						jQuery.cookie('fromfb' , '1' , { 'path' : '/' });
+						window.location = '<?php echo get_page_link('157')?>';
+					});
+				});
+			</script>
+			
 			
 			</div>	
 		</div>

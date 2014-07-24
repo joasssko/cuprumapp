@@ -30,7 +30,8 @@ use Facebook\GraphSessionInfo;
 
 FacebookSession::setDefaultApplication('1510090219206225','35d16851508fcc39cbabdf8180fa6446');
 
-$helper = new FacebookRedirectLoginHelper( 'https://diadelninocuprum.upmedia.cl/?page_id=153' );
+//cambiar despues de migrar
+$helper = new FacebookRedirectLoginHelper( 'https://www.facebook.com/joassssko/app_1510090219206225' );
 
 // see if a existing session exists
 if (isset($_SESSION) && isset($_SESSION['fb_token'])) {
@@ -70,24 +71,24 @@ if (isset($session)) {
 
     $_SESSION['valid'] = true;
     $_SESSION['timeout'] = time();
-
     $_SESSION['FB'] = true;
-
     $_SESSION['usernameFB'] = $graphObject['name'];
     $_SESSION['idFB'] = $graphObject['id'];
     $_SESSION['first_nameFB'] = $graphObject['first_name'];
     $_SESSION['last_nameFB'] = $graphObject['last_name'];
     $_SESSION['genderFB'] = $graphObject['gender'];
-
+	
+	
     // logout and destroy the session, redirect url must be absolute url
     $linkLogout = $helper->getLogoutUrl($session,
-            'http://todaythoughts.com/CS4880FB/redirect.php?action=logout');
+    'http://todaythoughts.com/CS4880FB/redirect.php?action=logout');
 
     $_SESSION['logoutUrlFB'] = $linkLogout;
     //header('Location: index.php');
 } else {
     //header('Location: ' . $helper->getLoginUrl());
-	echo '<a href="'.$helper->getLoginUrl().'">Log In</a>';
+	//echo '<a href="'.$helper->getLoginUrl(array('scope'=>'user_likes')).'">Log In</a>';
+
 }
 
 ?>
@@ -100,39 +101,27 @@ if (isset($session)) {
                
 				get_template_part('_page-tab');
 
-				/* make the API call */
-				$request = new FacebookRequest(
-				  $session,
-				  'GET',
-				  '/{user-id}/likes/{page-id}'
-				);
-				$response = $request->execute();
-				$graphObject = $response->getGraphObject();
-				/* handle the result */
-				
-				var_dump($graphObject);
-				
-				
-
 
             }
         } else { ;
 
 	
 ?>
-
-<?php get_header()?>
-<body <?php body_class();?>>			
-<div class="container" sttle="text-align:center;">
-	<div class="row">
-		<h1>Lo sentímos<h1>
-		<p>Debes conectarte a la aplicación para poder jugar</p>
+<?php /* get_header()?>
+<body <?php body_class();?>>
+<div id="main">			
+	<div class="container" style="text-align:center;">
+		<div class="row">
+			<h1>Lo sentímos</h1>
+			<p>Debes conectarte a la aplicación para poder jugar</p>
+			
+			<a href="<?php echo $helper->getLoginUrl(array('scope'=>'user_likes'))?>" target="_top"><img src="<?php bloginfo('template_url')?>/images/conectar.png" /></a>
+			
+		</div>
+	</div>	
+</div>		
+<?php get_footer() */?>	
 		
-		<a href="<?php echo get_page_link('155')?>"><img src="<?php bloginfo('template-directory') ?>/images/siguiente.png" /></a>
-		
-	</div>
-</div>			
-<?php get_footer()?>			
 <?php } ?>
 
 <?php // cuprum ID 395624000455504?>
