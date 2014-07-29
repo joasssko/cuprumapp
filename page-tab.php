@@ -107,7 +107,7 @@ if (isset($session)) {
 
 	
 ?>
-<?php /* get_header()?>
+<?php  get_header()?>
 <body <?php body_class();?>>
 <div id="main">			
 	<div class="container" style="text-align:center;">
@@ -120,7 +120,7 @@ if (isset($session)) {
 		</div>
 	</div>	
 </div>		
-<?php get_footer() */?>	
+<?php get_footer() ?>	
 		
 <?php } ?>
 

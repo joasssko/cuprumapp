@@ -201,13 +201,13 @@ margin: 5px auto;
 
 .sombrea {text-shadow: 2px 2px 1px #fff , -2px -2px 1px #fff , 2px -2px 1px #fff , -2px 2px 1px #fff ;color:#ffa409}
 
-#mobile .sombrea {text-shadow: 2px 2px 0px #fff , -2px -2px 0px #fff , 2px -2px 0px #fff , -2px 2px 0px #fff ;color:#ffa409; background-color:rgba(0,0,0,0.7)}
+#mobile .sombrea {text-shadow: 1px 1px 0px #fff , -1px -1px 0px #fff , 1px -1px 0px #fff , -1px 1px 0px #fff ;color:#ffa409;}
 
 .sombrea.correcta{ background-image:url(images/true.png); background-position: right 50%;  background-repeat: no-repeat}
 
 .sombrea.incorrecta{ background-image:url(images/false.png); background-position: right 50%; background-repeat: no-repeat}
 
-.lobster{ margin-top:100px; margin-bottom:50px;}
+.lobster{ margin-top:10px; margin-bottom:50px;}
 
 .markers{ text-align:center; margin:10px 0}
 
@@ -227,9 +227,33 @@ margin: 20px 0 20px 0;
 }
 
 #mobile .lobster {
-margin-top: 60px;
-margin-bottom: 100px;
+margin-top:0px;
+margin-bottom: 10px;
 }
+
+#mobile .overclock .reloj {
+background: url(images/reloj.png);
+height: 168px;
+width: 140px;
+margin: 0 auto;
+}
+
+#mobile .overclock #reloj {
+padding: 75px 0 0 0;
+font-size: 22px;
+font-weight: 700;
+font-family: helvetica, arial, sans-serif;
+color: #fff;
+}
+
+small {
+font-weight: 700;
+color: #fff;
+font-size: 16px;
+font-family: 'noteworthy', helvetica, arial , sans-serif;
+}
+
+.facebookmg{ text-decoration:none}
 
 /******************************************FOOTER*******************************/
 

@@ -115,14 +115,14 @@ jQuery(document).ready(function($) {
 			}
 			
 			else if(edad >= 2012){
-				jQuery(".alerta").html('<div class="alert alert-warning alert-dismissible" role="alert"> <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><strong>Atención!</strong> Revisa bien, sabemos que no quieres decirnos tu edad, pero debes hacerlo para jugar, ingresa tu año de nacimiento.</div>')
+				jQuery(".alerta").html('<div class="alert alert-warning alert-dismissible" role="alert"> <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><strong>¡Atención!</strong> Sabemos que no quieres que sepamos tu edad, pero es necesario que ingreses tu año de nacimiento para poder jugar.</div>')
 			}
 			
 			else{
-				jQuery(".alerta").html('<div class="alert alert-warning alert-dismissible" role="alert"> <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><strong>Atención!</strong> Revisa bien, sabemos que no quieres decirnos tu edad, pero debes hacerlo para jugar, ingresa tu año de nacimiento.</div>')
+				jQuery(".alerta").html('<div class="alert alert-warning alert-dismissible" role="alert"> <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><strong>¡Atención!</strong> Sabemos que no quieres que sepamos tu edad, pero es necesario que ingreses tu año de nacimiento para poder jugar.</div>')
 			}
 			
-			
+			 
 		//});		
 	});	
 	

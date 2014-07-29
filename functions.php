@@ -2,6 +2,7 @@
 add_theme_support('post-thumbnails');
 add_image_size('big-noticia', 665, 415, true );
 add_image_size('mini-noticia', 330, 205, true );
+add_image_size('thumbnailx', 100 , 100 , true );
 //add_image_size('noticias_destacada', 630, 443, true );
 //add_image_size('portada_documento', 70, 100, true ); 
 

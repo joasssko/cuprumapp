@@ -24,7 +24,7 @@
 			</div>
 			
 			<div class="escena1">
-				<div class="col-md-6 col-md-offset-3"><h2>Pon a prueba tu memoria con este entretenido desafío que CuprumAFP tiene para tí en el mes del niño.</h2></div>
+				<div class="col-md-6 col-md-offset-3"><h2>Vuelve a ser niño esta semana y juega recordando a quienes animaron tu niñez.</h2></div>
 				<div class="clear"></div>
 							
 				
@@ -36,7 +36,7 @@
 			<div class="escena2 col-md-8 col-md-offset-2">
 				<h1>Instrucciones</h1>
 				<div>
-					<p>Ingresa tu año de nacimiento, mira bien las 5 imágenes de cada personaje y selecciona la alternativa correcta en el menor tiempo posible.</p>
+					<p><strong>Para comenzar</strong><br>ingresa tu año de nacimiento.</p>
 				</div>
 				<input name="edad" id="edad" placeholder="ej: 1984" type="text" />
 				
@@ -91,6 +91,7 @@
 						
 						//exito, pasa a la siguiente pregunta
 						jQuery('.pregunta-<?php echo $count?> .correcta').click(function(event) {
+							jQuery('.pregunta-<?php echo $count?> .incorrecta').off()
 							jQuery('.pregunta-<?php echo $count?> .error').fadeOut('fast')
 							jQuery('.pregunta-<?php echo $count?> .exito').show('fast')
 						});
@@ -118,6 +119,7 @@
 						
 						//exito, pasa a la siguiente pregunta
 						jQuery('.pregunta-<?php echo $count?> .correcta').click(function(event) {
+							jQuery('.pregunta-<?php echo $count?> .incorrecta').off()
 							jQuery('.pregunta-<?php echo $count?> .error').fadeOut('fast')
 							jQuery('.pregunta-<?php echo $count?> .exito').show('fast')
 						});
@@ -174,6 +176,7 @@
 						
 						//exito, pasa a la siguiente pregunta
 						jQuery('.pregunta-<?php echo $count?> .correcta').click(function(event) {
+							jQuery('.pregunta-<?php echo $count?> .incorrecta').off()
 							jQuery('.pregunta-<?php echo $count?> .error').fadeOut('fast')
 							jQuery('.pregunta-<?php echo $count?> .exito').show('fast')
 						});
@@ -201,6 +204,7 @@
 						
 						//exito, pasa a la siguiente pregunta
 						jQuery('.pregunta-<?php echo $count?> .correcta').click(function(event) {
+							jQuery('.pregunta-<?php echo $count?> .incorrecta').off()
 							jQuery('.pregunta-<?php echo $count?> .error').fadeOut('fast')
 							jQuery('.pregunta-<?php echo $count?> .exito').show('fast')
 						});
@@ -257,6 +261,7 @@
 						
 						//exito, pasa a la siguiente pregunta
 						jQuery('.pregunta-<?php echo $count?> .correcta').click(function(event) {
+							jQuery('.pregunta-<?php echo $count?> .incorrecta').off()
 							jQuery('.pregunta-<?php echo $count?> .error').fadeOut('fast')
 							jQuery('.pregunta-<?php echo $count?> .exito').show('fast')
 						});
@@ -287,6 +292,7 @@
 						
 						//exito, pasa a la siguiente pregunta
 						jQuery('.pregunta-<?php echo $count?> .correcta').click(function(event) {
+							jQuery('.pregunta-<?php echo $count?> .incorrecta').off()
 							jQuery('.pregunta-<?php echo $count?> .error').fadeOut('fast')
 							jQuery('.pregunta-<?php echo $count?> .exito').show('fast')
 						});
@@ -318,20 +324,33 @@
 
 			<div class="clear"></div>
 			<div class="escena4 col-md-8 col-md-offset-2">
+				<p style="margin-top:10px">porque has vuelto a tu infancia,</p>
 				<div class="lobster"><img src="<?php bloginfo('template_directory')?>/images/feliz.png" alt="" /></div>
-				<div class="sharebuton"><a href="<?php echo get_page_link('157')?>"><img src="<?php bloginfo('template_directory')?>/images/siguiente.png" alt="" /></a></div>
+				<a href="https://www.facebook.com/CuprumAFP" data-image="<?php bloginfo('template_directory')?>/screenshot.png" data-title="YO TAMBIEN CELEBRO EL DÍA DEL NIÑO" data-desc="Con Curpum AFP volví a mi infancia jugando y recordando los personajes que animaron mi infancia." class="btnShare" ><img src="<?php bloginfo('template_directory')?>/images/compartir.png" alt="" style="margin-bottom:10px;"></a>
 			</div>
 			
-			<script>
-				jQuery(document).ready(function($) {
-					jQuery('.sharebuton').click(function(event) {
-						event.preventDefault();
-						var tiempo	=	jQuery('#reloj').html();
-						jQuery.cookie('tiempo' , tiempo , { 'path' : '/' });
-						jQuery.cookie('fromfb' , '1' , { 'path' : '/' });
-						window.location = '<?php echo get_page_link('157')?>';
-					});
-				});
+			<script type="text/javascript">
+			
+			window.fbAsyncInit = function(){
+			FB.init({
+				appId: '1510090219206225', status: true, cookie: true, xfbml: true }); 
+			};
+			(function(d, debug){var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];if   (d.getElementById(id)) {return;}js = d.createElement('script'); js.id = id; js.async = true;js.src = "//connect.facebook.net/en_US/all" + (debug ? "/debug" : "") + ".js";ref.parentNode.insertBefore(js, ref);}(document, /*debug*/ false));
+			function postToFeed(title, desc, url, image){
+			var obj = {method: 'feed',link: url, picture: '<?php bloginfo('template_directory')?>/screenshot.png',name: title,description: desc};
+			function callback(response){}
+			FB.ui(obj, callback);
+			}
+			
+			
+			jQuery('.btnShare').click(function(){
+			elem = jQuery(this);
+			postToFeed(elem.data('title'), elem.data('desc'), elem.prop('href'), elem.data('image'));
+			
+			return false;
+			});
+			
+			
 			</script>
 			
 			

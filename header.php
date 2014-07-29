@@ -8,9 +8,11 @@
 <?php }else{?>
 	<title><?php wp_title();?></title>
 <?php }?>
+
+
 <meta property="og:url" content="<?php bloginfo('url')?>" />
-<meta property="og:title" content="ADIVINA EL PERSONAJE" />
-<meta property="og:description" content="Vencí el desafío del mes del niño ADIVINA EL PERSONAJE. Te invito a jugar y recordar tu niñez junto a Cuprum AFP" />
+<meta property="og:title" content="YO TAMBIEN CELEBRO EL DÍA DEL NIÑO" />
+<meta property="og:description" content="Con Curpum AFP volví a mi infancia jugando y recordando los personajes que animaron mi infancia." />
 <meta property="og:image" content="<?php bloginfo('template_directory')?>/screenshot.png" />
 <meta property="og:type" content="game" />
 <meta property="og:site_name" content="Adivina el personaje | Cuprum AFP" />
@@ -51,12 +53,12 @@
 <script type="text/javascript" src="<?php bloginfo('template_directory')?>/js/stopwatch.js"></script>
 
 <div id="fb-root"></div>
-<script>(function(d, s, id) {
+<script>/*(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
   js.src = "//connect.facebook.net/es_ES/all.js#xfbml=1&appId=1510090219206225&version=v2.0";
   fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+}(document, 'script', 'facebook-jssdk'));*/</script>
 
 </head>
