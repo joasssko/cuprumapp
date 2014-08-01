@@ -64,7 +64,7 @@ $.cookie = function(key, value, options) {
 
 jQuery(document).ready(function($) {
 	
-	jQuery('.logoapp').animate({opacity: 1, top: 0}, 500, 'swing',  function() {
+	jQuery('.logoapp').animate({opacity: 1, top: -60}, 500, 'swing',  function() {
 		  jQuery('.mano').animate({opacity:1}, 500, function() {
 		    // stuff to do after animation is complete
 		  })

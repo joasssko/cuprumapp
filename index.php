@@ -9,11 +9,11 @@ if ($detect->isMobile() ){?>
 <?php }else{?>
 <?php get_header()?>
 <body <?php body_class();?> >
-<div id="main" style="min-height:1000px;">
+<div id="main" style="min-height:710px;">
 	<div class="container">
 		<div class="row">
 			<div class="logo">
-				<img src="<?php bloginfo('template_directory')?>/images/logo.png" alt="" class="alignleft"/>
+				<img src="<?php bloginfo('template_directory')?>/images/logo.png" alt="" width="300" class="alignleft"/>
 				
 				<div class="der">
 					<!--<div class="fb-like" data-href="https://www.facebook.com/CuprumAFP" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div> -->
@@ -41,7 +41,7 @@ if ($detect->isMobile() ){?>
 					}
 				</script>
 				<div id="flbCont" class="connect_widget">
-					<a id="flb" class="connect_widget_like_button clearfix like_button_no_like" onclick="insertLikeButton();" style="cursor:pointer;-moz-outline-style:none;text-decoration:none"><img src="<?php bloginfo('template_directory')?>/images/mg.png" width="120" style="padding:20px;" alt=""></a>
+					<a id="flb" class="connect_widget_like_button clearfix like_button_no_like" onClick="insertLikeButton();" style="cursor:pointer;-moz-outline-style:none;text-decoration:none"><img src="<?php bloginfo('template_directory')?>/images/mg.png" width="120" style="padding:20px;" alt=""></a>
 				</div>
 				
 				<style type="text/css">
@@ -59,17 +59,16 @@ if ($detect->isMobile() ){?>
 			<div class="logoapp">
 				<div class="col-md-8 col-md-offset-2">
 					<a href="<?php bloginfo('url')?>" class="">
-						<img src="<?php bloginfo('template_directory')?>/images/logoapp.png" width="100%" alt="" />
+						<img src="<?php bloginfo('template_directory')?>/images/logoapp.png" width="600" alt="" />
 					</a>
 				</div>
 				<div class="clear"></div>
 			</div>
 			
 			<div class="escena1">
-				<div class="col-md-6 col-md-offset-3"><h2>Vuelve a ser niño esta semana y juega recordando a quienes animaron tu niñez.</h2>
+				<div class="col-md-6 col-md-offset-3"><h2>Vuelve a ser niño esta semana y juega recordando a quienes animaron tu infancia.</h2>
 				<br><br>
 				
-				<p>Para jugar, haz click en una de las opciones a continuación</p>
 				
 				</div>
 				<div class="clear"></div>
@@ -80,11 +79,11 @@ if ($detect->isMobile() ){?>
 		
 		
 		<div class="escena2 col-md-8 col-md-offset-2">
-				<h1>Instrucciones</h1>
+				
 				<div>
-					<p><strong>Para comenzar</strong><br>ingresa tu año de nacimiento.</p>
+					<p>Para comenzar<br>ingresa tu año de nacimiento.</p>
 				</div>
-				<input name="edad" id="edad" placeholder="ej: 1984" type="text" />
+				<input name="edad" id="edad" placeholder="ej: 1984" type="text" maxlength="4" />
 				
 				<div class="alerta col-md-6 col-md-offset-3"></div>
 				
@@ -114,7 +113,7 @@ if ($detect->isMobile() ){?>
 					<?php $count++?>
 					<div class="pregunta-<?php echo $count?> pregunta">
 						<div class="col-md-6">
-						<?php echo get_the_post_thumbnail($pregunta->ID , 'medium')?>
+						<?php echo get_the_post_thumbnail($pregunta->ID , 'medium' , array('class' => 'persoimg'))?>
 						</div>
 						<?php $personajes = get_field('personajes' , $pregunta->ID)?>
 						<?php $correcta = get_field('correcta' , $pregunta->ID)?>
@@ -138,8 +137,8 @@ if ($detect->isMobile() ){?>
 						//exito, pasa a la siguiente pregunta
 						jQuery('.pregunta-<?php echo $count?> .correcta').click(function(event) {
 							jQuery('.pregunta-<?php echo $count?> .incorrecta').off()
-							jQuery('.pregunta-<?php echo $count?> .error').fadeOut('fast')
-							jQuery('.pregunta-<?php echo $count?> .exito').show('fast')
+							jQuery('.pregunta-<?php echo $count?> .error').css('display','none')
+							jQuery('.pregunta-<?php echo $count?> .exito').fadeIn('fast')
 						});
 						jQuery('.pregunta-<?php echo $count?> .error').click(function(event) {
 							jQuery(this).fadeOut('fast')
@@ -153,7 +152,7 @@ if ($detect->isMobile() ){?>
 						});
 						//error, repite
 						jQuery('.pregunta-<?php echo $count?> .incorrecta').click(function(event) {
-							jQuery('.pregunta-<?php echo $count?> .error').show('fast')
+							jQuery('.pregunta-<?php echo $count?> .error').fadeIn('fast')
 						});
 					</script>
 					<?php }elseif($count == 5){?>
@@ -166,8 +165,8 @@ if ($detect->isMobile() ){?>
 						//exito, pasa a la siguiente pregunta
 						jQuery('.pregunta-<?php echo $count?> .correcta').click(function(event) {
 							jQuery('.pregunta-<?php echo $count?> .incorrecta').off()
-							jQuery('.pregunta-<?php echo $count?> .error').fadeOut('fast')
-							jQuery('.pregunta-<?php echo $count?> .exito').show('fast')
+							jQuery('.pregunta-<?php echo $count?> .error').css('display','none')
+							jQuery('.pregunta-<?php echo $count?> .exito').fadeIn('fast')
 						});
 						jQuery('.pregunta-<?php echo $count?> .error').click(function(event) {
 							jQuery(this).fadeOut('fast')
@@ -184,7 +183,7 @@ if ($detect->isMobile() ){?>
 						});*/
 						//error, repite
 						jQuery('.pregunta-<?php echo $count?> .incorrecta').click(function(event) {
-							jQuery('.pregunta-<?php echo $count?> .error').show('fast')
+							jQuery('.pregunta-<?php echo $count?> .error').fadeIn('fast')
 						});
 					</script>	
 					<?php }?>	
@@ -201,7 +200,7 @@ if ($detect->isMobile() ){?>
 					<?php $count++?>
 					<div class="pregunta-<?php echo $count?> pregunta">
 						<div class="col-md-6">
-						<?php echo get_the_post_thumbnail($pregunta->ID , 'medium')?>
+						<?php echo get_the_post_thumbnail($pregunta->ID , 'medium', array('class' => 'persoimg'))?>
 						</div>
 						<?php $personajes = get_field('personajes' , $pregunta->ID)?>
 						<?php $correcta = get_field('correcta' , $pregunta->ID)?>	
@@ -223,8 +222,8 @@ if ($detect->isMobile() ){?>
 						//exito, pasa a la siguiente pregunta
 						jQuery('.pregunta-<?php echo $count?> .correcta').click(function(event) {
 							jQuery('.pregunta-<?php echo $count?> .incorrecta').off()
-							jQuery('.pregunta-<?php echo $count?> .error').fadeOut('fast')
-							jQuery('.pregunta-<?php echo $count?> .exito').show('fast')
+							jQuery('.pregunta-<?php echo $count?> .error').css('display','none')
+							jQuery('.pregunta-<?php echo $count?> .exito').fadeIn('fast')
 						});
 						jQuery('.pregunta-<?php echo $count?> .error').click(function(event) {
 							jQuery(this).fadeOut('fast')
@@ -238,7 +237,7 @@ if ($detect->isMobile() ){?>
 						});
 						//error, repite
 						jQuery('.pregunta-<?php echo $count?> .incorrecta').click(function(event) {
-							jQuery('.pregunta-<?php echo $count?> .error').show('fast')
+							jQuery('.pregunta-<?php echo $count?> .error').fadeIn('fast')
 						});
 					</script>
 					<?php }elseif($count == 5){?>
@@ -251,8 +250,8 @@ if ($detect->isMobile() ){?>
 						//exito, pasa a la siguiente pregunta
 						jQuery('.pregunta-<?php echo $count?> .correcta').click(function(event) {
 							jQuery('.pregunta-<?php echo $count?> .incorrecta').off()
-							jQuery('.pregunta-<?php echo $count?> .error').fadeOut('fast')
-							jQuery('.pregunta-<?php echo $count?> .exito').show('fast')
+							jQuery('.pregunta-<?php echo $count?> .error').css('display','none')
+							jQuery('.pregunta-<?php echo $count?> .exito').fadeIn('fast')
 						});
 						jQuery('.pregunta-<?php echo $count?> .error').click(function(event) {
 							jQuery(this).fadeOut('fast')
@@ -269,7 +268,7 @@ if ($detect->isMobile() ){?>
 						}); */
 						//error, repite
 						jQuery('.pregunta-<?php echo $count?> .incorrecta').click(function(event) {
-							jQuery('.pregunta-<?php echo $count?> .error').show('fast')
+							jQuery('.pregunta-<?php echo $count?> .error').fadeIn('fast')
 						});
 					</script>	
 					<?php }?>	
@@ -286,7 +285,7 @@ if ($detect->isMobile() ){?>
 					<?php $count++?>
 					<div class="pregunta-<?php echo $count?> pregunta">
 						<div class="col-md-6">
-						<?php echo get_the_post_thumbnail($pregunta->ID , 'medium')?>
+						<?php echo get_the_post_thumbnail($pregunta->ID , 'medium', array('class' => 'persoimg'))?>
 						</div>
 						<?php $personajes = get_field('personajes' , $pregunta->ID)?>
 						<?php $correcta = get_field('correcta' , $pregunta->ID)?>	
@@ -309,7 +308,7 @@ if ($detect->isMobile() ){?>
 						jQuery('.pregunta-<?php echo $count?> .correcta').click(function(event) {
 							jQuery('.pregunta-<?php echo $count?> .incorrecta').off()
 							jQuery('.pregunta-<?php echo $count?> .error').fadeOut('fast')
-							jQuery('.pregunta-<?php echo $count?> .exito').show('fast')
+							jQuery('.pregunta-<?php echo $count?> .exito').fadeIn('fast')
 						});
 						jQuery('.pregunta-<?php echo $count?> .error').click(function(event) {
 							jQuery(this).fadeOut('fast')
@@ -323,7 +322,7 @@ if ($detect->isMobile() ){?>
 						});
 						//error, repite
 						jQuery('.pregunta-<?php echo $count?> .incorrecta').click(function(event) {
-							jQuery('.pregunta-<?php echo $count?> .error').show('fast')
+							jQuery('.pregunta-<?php echo $count?> .error').fadeIn('fast')
 						});
 
 					</script>
@@ -339,8 +338,8 @@ if ($detect->isMobile() ){?>
 						//exito, pasa a la siguiente pregunta
 						jQuery('.pregunta-<?php echo $count?> .correcta').click(function(event) {
 							jQuery('.pregunta-<?php echo $count?> .incorrecta').off()
-							jQuery('.pregunta-<?php echo $count?> .error').fadeOut('fast')
-							jQuery('.pregunta-<?php echo $count?> .exito').show('fast')
+							jQuery('.pregunta-<?php echo $count?> .error').css('display','none')
+							jQuery('.pregunta-<?php echo $count?> .exito').fadeIn('fast')
 						});
 						jQuery('.pregunta-<?php echo $count?> .error').click(function(event) {
 							jQuery(this).fadeOut('fast')
@@ -357,7 +356,7 @@ if ($detect->isMobile() ){?>
 						}); */
 						//error, repite
 						jQuery('.pregunta-<?php echo $count?> .incorrecta').click(function(event) {
-							jQuery('.pregunta-<?php echo $count?> .error').show('fast')
+							jQuery('.pregunta-<?php echo $count?> .error').fadeIn('fast')
 						});
 					</script>	
 					<?php }?>	
@@ -370,7 +369,7 @@ if ($detect->isMobile() ){?>
 			</div>
 			<div class="clear"></div>
 			<div class="escena4 col-md-8 col-md-offset-2">
-				<p style="margin-top:10px">porque has vuelto a tu infancia,</p>
+				<p style="margin-top:10px">... porque has vuelto a tu infancia,</p>
 				<div class="lobster"><img src="<?php bloginfo('template_directory')?>/images/feliz.png" alt="" /></div>
 				
 			
