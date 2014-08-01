@@ -126,7 +126,7 @@ p { font-family: 'noteworthy', helvetica, arial , sans-serif;  color:#fff; font-
 .escena2, .escena3 , .escena4 , .escena5 , .escena6 , .escena7 , .escena8 , .escena9 , .escena10 { display:none; top:-150px; position:relative}
 
 #main{ background-image:url(images/backgroundlight.png); background-position:top center; background-repeat:no-repeat; text-align:center; min-height:700px;}
-#mobile #main{ min-height:480px;}
+#mobile #main{ min-height:568px;}
 
 .logo{ position:relative; z-index:1;}
 .logoapp{ opacity: 0; top:100px; display:block; position:relative}
@@ -192,7 +192,12 @@ margin: 5px auto;
 .facebookmg{ padding:30px 0; display:block}
 
 .pregunta-2 , .pregunta-3 , .pregunta-4 , .pregunta-5 { display:none}
-.exito, .error{ display:none}
+
+.home .exito, .home .error , .page-id-153 .exito, .page-id-153 .error{ display:none; clear:both; float:right}
+
+.page-id-151 .exito, .page-id-151 .error{ display:none; }
+
+
 .etareo1, .etareo2, .etareo3{ display:none}
 
 .respuesta {padding: 10px 20px;color: #fff;font-family: lobster, helvetica, arial, sans-serif;font-size: 22px;margin: 4px 0;cursor: pointer;text-align: left;	}
@@ -261,8 +266,16 @@ font-family: 'noteworthy', helvetica, arial , sans-serif;
 #footer h1{ color:#6ca33f ; font-size:32px; font-weight:700} 	
 .info{ font-size:12px; color:#6ca33f ;  font-family:source sans pro , helvetica, arial, sans-serif; line-height:150%; padding-top:10px;}
 
+#footer ul{ text-align:center; width:800px; margin: 0 auto}
 #footer ul li{ float: left; padding:7px 10px; font-size:12px; font-family:helvetica, arial , sans-serif; list-style:none; width: 160px; text-align: center;}
 
 /*******************************************************************************************/
 /*************************************MOBILE************************************************/
 /*******************************************************************************************/
+
+.persoimg{ width:200px; height:auto; }
+
+
+input:focus::-webkit-input-placeholder { color:transparent; }
+	input:focus:-moz-placeholder { color:transparent; } /* FF 4-18 */
+	input:focus::-moz-placeholder { color:transparent; } /* FF 19+ */

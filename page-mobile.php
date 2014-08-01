@@ -49,7 +49,7 @@ if ($detect->isMobile() ){?>
 			</div>
 			
 			<div class="escena1">
-				<div class="col-md-6 col-md-offset-3"><h2>Vuelve a ser niño esta semana y juega recordando a quienes animaron tu niñez</h2></div>
+				<div class="col-md-6 col-md-offset-3"><h2>Vuelve a ser niño esta semana y juega recordando a quienes animaron tu infancia</h2></div>
 				<div class="clear"></div>
 							
 				
@@ -60,9 +60,9 @@ if ($detect->isMobile() ){?>
 			<div class="escena2 col-md-8 col-md-offset-2">
 				
 				<div>
-					<p><strong>Para comenzar</strong><br>ingresa tu año de nacimiento</p>
+					<p>Para comenzar<br>ingresa tu año de nacimiento</p>
 				</div>
-				<input name="edad" id="edad" placeholder="ej: 1984" type="text" />
+				<input name="edad" id="edad" placeholder="ej: 1984" type="text" maxlength="4" />
 				
 				<div class="alerta"></div>
 				
@@ -77,8 +77,8 @@ if ($detect->isMobile() ){?>
 					<div class="col-md-4 col-xs-6 nnpregunta"><div class="npregunta"></div></div>
 					
 					<div class="col-md-8 col-xs-12 volviste">
-						<h1>¡Felicitaciones!</h1>
-						<p>Volviste a ser niño durante:</p>
+						<!--<h1>¡Felicitaciones!</h1> -->
+						<p>¡Felicitaciones! Volviste a ser niño durante:</p>
 					</div>
 					<div class="col-md-4 relleno"></div>
 					<div class="col-md-4 col-xs-6"><div class="reloj"><div id="reloj">00:00</div></div></div>
@@ -361,7 +361,7 @@ if ($detect->isMobile() ){?>
 			</div>
 			<div class="clear"></div>
 			<div class="escena4 col-md-8 col-md-offset-2">
-				<p style="margin-top:10px">porque has vuelto a tu infancia,</p>
+				<p style="margin-top:10px">... porque has vuelto a tu infancia,</p>
 				<div class="lobster"><img src="<?php bloginfo('template_directory')?>/images/feliz.png" alt="" width="100%" /></div>
 				<a href="https://www.facebook.com/CuprumAFP" data-image="<?php bloginfo('template_directory')?>/screenshot.png" data-title="YO TAMBIEN CELEBRO EL DÍA DEL NIÑO" data-desc="Con Curpum AFP volví a mi infancia jugando y recordando los personajes que animaron mi infancia." class="btnShare" ><img src="<?php bloginfo('template_directory')?>/images/compartir.png" alt="" style="margin-bottom:10px;"></a>
 			</div>

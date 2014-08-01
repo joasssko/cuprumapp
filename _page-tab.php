@@ -1,13 +1,3 @@
-<?php get_header()?>
-<div id="fb-root"></div>
-<body <?php body_class();?>>
-
-<style type="text/css">
-	.container{ width:810px;}
-	.volviste{ padding:40px 0;}
-	.escena4{ padding:70px 0 }
-</style>
-
 <div id="main">
 	<div class="container">
 		<div class="row">
@@ -24,7 +14,7 @@
 			</div>
 			
 			<div class="escena1">
-				<div class="col-md-6 col-md-offset-3"><h2>Vuelve a ser niño esta semana y juega recordando a quienes animaron tu niñez.</h2></div>
+				<div class="col-md-6 col-md-offset-3"><h2>Vuelve a ser niño esta semana y juega recordando a quienes animaron tu infancia.</h2></div>
 				<div class="clear"></div>
 							
 				
@@ -34,11 +24,10 @@
 			</div>
 			
 			<div class="escena2 col-md-8 col-md-offset-2">
-				<h1>Instrucciones</h1>
 				<div>
-					<p><strong>Para comenzar</strong><br>ingresa tu año de nacimiento.</p>
+					<p>Para comenzar<br>ingresa tu año de nacimiento.</p>
 				</div>
-				<input name="edad" id="edad" placeholder="ej: 1984" type="text" />
+				<input name="edad" id="edad" placeholder="ej: 1984" type="text" maxlength="4" />
 				
 				<div class="alerta"></div>
 				
@@ -68,7 +57,7 @@
 					<?php $count++?>
 					<div class="pregunta-<?php echo $count?> pregunta">
 						<div class="col-md-6 col-xs-6">
-						<?php echo get_the_post_thumbnail($pregunta->ID , 'medium')?>
+						<?php echo get_the_post_thumbnail($pregunta->ID , 'medium' , array('class' => 'persoimg'))?>
 						</div>
 						<?php $personajes = get_field('personajes' , $pregunta->ID)?>
 						<?php $correcta = get_field('correcta' , $pregunta->ID)?>
@@ -155,7 +144,7 @@
 					<?php $count++?>
 					<div class="pregunta-<?php echo $count?> pregunta">
 						<div class="col-md-6 col-xs-6">
-						<?php echo get_the_post_thumbnail($pregunta->ID , 'medium')?>
+						<?php echo get_the_post_thumbnail($pregunta->ID , 'medium' , array('class' => 'persoimg'))?>
 						</div>
 						<?php $personajes = get_field('personajes' , $pregunta->ID)?>
 						<?php $correcta = get_field('correcta' , $pregunta->ID)?>	
@@ -240,7 +229,7 @@
 					<?php $count++?>
 					<div class="pregunta-<?php echo $count?> pregunta">
 						<div class="col-md-6 col-xs-6">
-						<?php echo get_the_post_thumbnail($pregunta->ID , 'medium')?>
+						<?php echo get_the_post_thumbnail($pregunta->ID , 'medium' , array('class' => 'persoimg'))?>
 						</div>
 						<?php $personajes = get_field('personajes' , $pregunta->ID)?>
 						<?php $correcta = get_field('correcta' , $pregunta->ID)?>	
@@ -324,18 +313,14 @@
 
 			<div class="clear"></div>
 			<div class="escena4 col-md-8 col-md-offset-2">
-				<p style="margin-top:10px">porque has vuelto a tu infancia,</p>
+				<p style="margin-top:10px">... porque has vuelto a tu infancia,</p>
 				<div class="lobster"><img src="<?php bloginfo('template_directory')?>/images/feliz.png" alt="" /></div>
 				<a href="https://www.facebook.com/CuprumAFP" data-image="<?php bloginfo('template_directory')?>/screenshot.png" data-title="YO TAMBIEN CELEBRO EL DÍA DEL NIÑO" data-desc="Con Curpum AFP volví a mi infancia jugando y recordando los personajes que animaron mi infancia." class="btnShare" ><img src="<?php bloginfo('template_directory')?>/images/compartir.png" alt="" style="margin-bottom:10px;"></a>
 			</div>
 			
 			<script type="text/javascript">
 			
-			window.fbAsyncInit = function(){
-			FB.init({
-				appId: '1510090219206225', status: true, cookie: true, xfbml: true }); 
-			};
-			(function(d, debug){var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];if   (d.getElementById(id)) {return;}js = d.createElement('script'); js.id = id; js.async = true;js.src = "//connect.facebook.net/en_US/all" + (debug ? "/debug" : "") + ".js";ref.parentNode.insertBefore(js, ref);}(document, /*debug*/ false));
+			
 			function postToFeed(title, desc, url, image){
 			var obj = {method: 'feed',link: url, picture: '<?php bloginfo('template_directory')?>/screenshot.png',name: title,description: desc};
 			function callback(response){}
@@ -358,8 +343,3 @@
 		</div>
 	</div>
 </div>
-
-
-
-
-<?php get_footer()?>
